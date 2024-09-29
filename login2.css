@@ -15,18 +15,39 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    animation: backgroundFade 10s infinite alternate;
 }
 
-.container{
+@keyframes backgroundFade {
+    0% {
+        background: linear-gradient(to right, #000000 0%, #5719a8 100%);
+    }
+    100% {
+        background: linear-gradient(to right, #5719a8 0%, #000000 100%);
+    }
+}
+
+.container {
     background-color: #fff;
     border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35),
+                0 0 60px rgba(115, 7, 148, 0.4), /* Outer glow */
+                0 0 100px rgba(115, 7, 148, 0.2); /* More spread for the aura */
     position: relative;
     overflow: hidden;
     width: 768px;
     max-width: 100%;
     min-height: 480px;
+    transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
 }
+
+.container:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(115, 7, 148, 0.6), /* Stronger outer glow on hover */
+                0 0 150px rgba(115, 7, 148, 0.3); /* Increase the spread for hover */
+}
+
 
 .container p{
     font-size: 14px;
@@ -44,6 +65,11 @@ body{
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
+    transition: color 0.3s ease;
+}
+
+.container a:hover{
+    color: #730794;
 }
 
 .container button{
@@ -58,11 +84,12 @@ body{
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
+    transition: transform 0.4s, background-color 0.3s ease;
 }
 
-.container button.hidden{
-    background-color: transparent;
-    border-color: #fff;
+.container button:hover{
+    background-color: #5c6bc0;
+    transform: scale(1.1);
 }
 
 .container form{
@@ -73,6 +100,7 @@ body{
     flex-direction: column;
     padding: 0 40px;
     height: 100%;
+    transition: all 0.6s ease-in-out;
 }
 
 .container input{
@@ -84,6 +112,11 @@ body{
     border-radius: 8px;
     width: 100%;
     outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.container input:focus{
+    box-shadow: 0 0 10px rgba(115, 7, 148, 0.5);
 }
 
 .form-container{
@@ -130,6 +163,16 @@ body{
 
 .social-icons{
     margin: 20px 0;
+    animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .social-icons a{
@@ -141,6 +184,35 @@ body{
     margin: 0 3px;
     width: 40px;
     height: 40px;
+    transition: transform 0.4s, border-color 0.4s;
+}
+.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.4s, border-color 0.4s;
+}
+
+.social-icons a:hover{
+    border-color: #730794;
+    animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
 }
 
 .toggle-container{
@@ -171,6 +243,16 @@ body{
     width: 200%;
     transform: translateX(0);
     transition: all 0.6s ease-in-out;
+    animation: backgroundPan 10s infinite alternate;
+}
+
+@keyframes backgroundPan {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
 }
 
 .container.active .toggle{
